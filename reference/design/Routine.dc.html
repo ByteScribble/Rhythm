@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Routine</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3D6BE0}a:hover{color:#2F5BCB}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F6F8FB; font-family: 'Geist', 'SF Pro Text', system-ui, sans-serif; color: #172033; -webkit-font-smoothing: antialiased">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 76px; overflow-y: auto; box-sizing: border-box; padding: 56px 20px 32px; display: flex; flex-direction: column; gap: 24px">
+
+    <header style="display: flex; justify-content: space-between; align-items: flex-start">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <h1 style="margin: 0; font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: -0.02em">Routine</h1>
+        <div style="font-size: 14px; line-height: 20px; color: #667085">11 activities · repeats automatically</div>
+      </div>
+      <a href="Add-Activity.dc.html" aria-label="Add activity" style="width: 44px; height: 44px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E7EBF0; display: flex; align-items: center; justify-content: center; color: #172033; box-sizing: border-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </a>
+    </header>
+
+    <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+      <section style="display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 0 4px">
+          <h2 style="margin: 0; font-size: 13px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: #667085">{{g.label}}</h2>
+          <span style="font-size: 13px; line-height: 16px; color: #667085">{{g.count}}</span>
+        </div>
+        <ul style="list-style: none; margin: 0; padding: 0 4px 0 0; background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 16px">
+          <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="4">
+            <li style="{{r.rowStyle}}">
+              <span aria-hidden="true" style="width: 28px; display: flex; justify-content: center; color: #B4BCC8; flex-shrink: 0">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg>
+              </span>
+              <span style="width: 68px; flex-shrink: 0; font-size: 14px; line-height: 20px; color: #667085; font-variant-numeric: tabular-nums">{{r.time}}</span>
+              <a href="Edit-Activity.dc.html" style="flex: 1; min-width: 0; min-height: 44px; display: flex; flex-direction: column; justify-content: center; text-decoration: none">
+                <span style="font-size: 16px; line-height: 22px; color: #172033">{{r.name}}</span>
+                <span style="font-size: 13px; line-height: 18px; color: #667085">{{r.repeat}}</span>
+              </a>
+              <button type="button" aria-label="{{r.menuLabel}}" style="width: 44px; height: 44px; border: 0; border-radius: 10px; background: transparent; color: #667085; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5.5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="18.5" r="1.6"/></svg>
+              </button>
+            </li>
+          </sc-for>
+        </ul>
+      </section>
+    </sc-for>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 76px; box-sizing: border-box; padding: 6px 28px 20px; background: #FFFFFF; border-top: 1px solid #E7EBF0; display: flex; justify-content: space-between; align-items: center">
+    <a href="Main.dc.html" style="min-width: 72px; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #667085; font-size: 12px; line-height: 14px; font-weight: 500">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+      Today
+    </a>
+    <a href="Routine.dc.html" aria-current="page" style="min-width: 72px; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #3D6BE0; font-size: 12px; line-height: 14px; font-weight: 600">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1" fill="currentColor"/><circle cx="4.5" cy="12" r="1" fill="currentColor"/><circle cx="4.5" cy="18" r="1" fill="currentColor"/></svg>
+      Routine
+    </a>
+    <a href="Insights.dc.html" style="min-width: 72px; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #667085; font-size: 12px; line-height: 14px; font-weight: 500">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 20v-6M12 20V6M19 20v-10"/></svg>
+      Insights
+    </a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var raw = [
+      { label: 'MORNING', rows: [
+        ['5:45 AM', 'Wake up', 'Daily'],
+        ['6:00 AM', 'Yoga', 'Daily · 60 min'],
+        ['7:00 AM', 'Get ready', 'Daily · 30 min'],
+        ['7:30 AM', 'Breakfast', 'Daily · 30 min'],
+        ['8:00 AM', 'Deep work', 'Mon–Fri · 2 hr'],
+        ['10:00 AM', 'Break', 'Mon–Fri · 15 min'],
+        ['10:15 AM', 'Study', 'Mon–Fri · 1 hr 45 min']
+      ] },
+      { label: 'AFTERNOON', rows: [
+        ['1:00 PM', 'Lunch', 'Daily · 45 min'],
+        ['3:00 PM', 'Reading', 'Daily · 45 min']
+      ] },
+      { label: 'EVENING', rows: [
+        ['9:00 PM', 'Meditation', 'Daily · 15 min'],
+        ['10:00 PM', 'Wind down', 'Daily · 30 min']
+      ] }
+    ];
+    var groups = raw.map(function (g) {
+      var n = g.rows.length;
+      return {
+        label: g.label,
+        count: n + (n === 1 ? ' activity' : ' activities'),
+        rows: g.rows.map(function (r, i) {
+          return {
+            time: r[0], name: r[1], repeat: r[2],
+            menuLabel: 'Options for ' + r[1],
+            rowStyle: 'display:flex;align-items:center;gap:4px;min-height:64px;' + (i < n - 1 ? 'border-bottom:1px solid #EEF1F5' : '')
+          };
+        })
+      };
+    });
+    return { groups: groups };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foundations — tokens</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3D6BE0}a:hover{color:#2F5BCB}
+</style>
+</helmet>
+<div style="width: 1100px; min-height: 2300px; box-sizing: border-box; padding: 64px; background: #FFFFFF; font-family: 'Geist', system-ui, sans-serif; color: #172033; display: flex; flex-direction: column; gap: 64px; -webkit-font-smoothing: antialiased">
+
+  <header style="display: flex; flex-direction: column; gap: 8px; max-width: 760px">
+    <div style="font-size: 13px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: #667085">RHYTHM · FOUNDATIONS</div>
+    <h1 style="margin: 0; font-size: 40px; line-height: 46px; font-weight: 600; letter-spacing: -0.02em">Design tokens</h1>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: #667085">Neutral by default; colour is reserved for status and the one primary action. Every value below maps 1:1 to a token name for code (CSS variables, Tailwind theme or a Swift/Kotlin constants file).</p>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 28px">
+    <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Colour</h2>
+    <sc-for list="{{colorGroups}}" as="grp" hint-placeholder-count="4">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: baseline; gap: 12px">
+          <h3 style="margin: 0; font-size: 13px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: #667085">{{grp.label}}</h3>
+          <span style="font-size: 13px; line-height: 18px; color: #667085">{{grp.note}}</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+          <sc-for list="{{grp.items}}" as="c" hint-placeholder-count="3">
+            <div style="display: flex; align-items: center; gap: 14px; padding: 12px; border: 1px solid #EEF1F5; border-radius: 14px">
+              <span style="{{c.swatch}}"></span>
+              <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+                <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; line-height: 18px; color: #172033">{{c.token}}</span>
+                <span style="font-size: 13px; line-height: 18px; color: #667085"><span style="font-family: 'Geist Mono', ui-monospace, monospace">{{c.hex}}</span> · {{c.use}}</span>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+    <p style="margin: 0; padding: 14px 16px; background: #EDF3FF; border-radius: 12px; font-size: 14px; line-height: 20px; color: #2F5BCB">Contrast: the brief's #4575E8 gives 4.2:1 under white 16px text, so primary is nudged to #3D6BE0 (4.8:1). Status hues (#34A36F, #DFA247, #D9646A) are for fills and indicators; text on soft backgrounds always uses the matching -ink token. text-tertiary is for icons, dividers and disabled states only, never for readable copy.</p>
+  </section>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px">
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Typography</h2>
+        <span style="font-size: 14px; line-height: 20px; color: #667085">Geist → SF Pro → system-ui. Times always use tabular figures.</span>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <sc-for list="{{type}}" as="t" hint-placeholder-count="10">
+          <div style="display: flex; align-items: center; gap: 16px; min-height: 56px; border-bottom: 1px solid #EEF1F5">
+            <span style="{{t.sample}}">{{t.text}}</span>
+            <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex-shrink: 0">
+              <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; line-height: 16px; color: #172033">{{t.token}} · {{t.spec}}</span>
+              <span style="font-size: 12px; line-height: 16px; color: #667085">{{t.use}}</span>
+            </span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Activity states</h2>
+        <span style="font-size: 14px; line-height: 20px; color: #667085">Each state differs in shape and label as well as colour.</span>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <div style="display: flex; align-items: center; gap: 16px; min-height: 56px; border-bottom: 1px solid #EEF1F5">
+          <span style="width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF; border: 1.5px solid #C9D0DB; box-sizing: border-box; flex-shrink: 0"></span>
+          <span style="width: 110px; font-size: 15px; font-weight: 500">Upcoming</span>
+          <span style="flex: 1; font-size: 13px; line-height: 18px; color: #667085">Hollow ring · border-strong · "Upcoming · 30 min"</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; min-height: 56px; border-bottom: 1px solid #EEF1F5">
+          <span style="width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF; border: 2px solid #3D6BE0; box-sizing: border-box; box-shadow: 0 0 0 4px #DCE6FD; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><span style="width: 8px; height: 8px; border-radius: 50%; background: #3D6BE0"></span></span>
+          <span style="width: 110px; font-size: 15px; font-weight: 500">Now</span>
+          <span style="flex: 1; font-size: 13px; line-height: 18px; color: #667085">Ring + dot + halo · primary · row tinted primary-soft</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; min-height: 56px; border-bottom: 1px solid #EEF1F5">
+          <span style="width: 20px; height: 20px; border-radius: 50%; background: #34A36F; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <span style="width: 110px; font-size: 15px; font-weight: 500">Completed</span>
+          <span style="flex: 1; font-size: 13px; line-height: 18px; color: #667085">Filled + check · success · name drops to secondary</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; min-height: 56px; border-bottom: 1px solid #EEF1F5">
+          <svg style="flex-shrink: 0" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#FFFFFF" stroke="#DFA247" stroke-width="2"/><path d="M10 3a7 7 0 0 0 0 14z" fill="#DFA247"/></svg>
+          <span style="width: 110px; font-size: 15px; font-weight: 500">Partial</span>
+          <span style="flex: 1; font-size: 13px; line-height: 18px; color: #667085">Half-filled ring · warning · optional amount</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; min-height: 56px; border-bottom: 1px solid #EEF1F5">
+          <span style="width: 20px; height: 20px; border-radius: 50%; background: #F1F4F8; border: 1.5px solid #C9D0DB; box-sizing: border-box; color: #667085; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 12h12"/></svg></span>
+          <span style="width: 110px; font-size: 15px; font-weight: 500">Skipped</span>
+          <span style="flex: 1; font-size: 13px; line-height: 18px; color: #667085">Grey disc + dash · neutral · a choice, not a failure</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; min-height: 56px">
+          <span style="width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF; border: 1.5px solid #D9646A; box-sizing: border-box; color: #B9474D; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></svg></span>
+          <span style="width: 110px; font-size: 15px; font-weight: 500">Missed</span>
+          <span style="flex: 1; font-size: 13px; line-height: 18px; color: #667085">Outlined × · danger · only when no check-in; offers "Update"</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 20px">
+        <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Motion</h2>
+        <span style="font-size: 14px; line-height: 20px; color: #667085">Motion only explains a state change. Reduced-motion: crossfade at 120ms.</span>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <sc-for list="{{motion}}" as="m" hint-placeholder-count="5">
+          <div style="display: flex; align-items: center; gap: 16px; min-height: 52px; border-bottom: 1px solid #EEF1F5">
+            <span style="width: 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: #172033">{{m.token}}</span>
+            <span style="width: 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: #475467">{{m.value}}</span>
+            <span style="flex: 1; font-size: 13px; line-height: 18px; color: #667085">{{m.use}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px">
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Spacing</h2>
+        <span style="font-size: 14px; line-height: 20px; color: #667085">8-point system with a 4px micro step.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{space}}" as="s" hint-placeholder-count="8">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="width: 64px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: #172033">{{s.token}}</span>
+            <span style="{{s.bar}}"></span>
+            <span style="font-size: 13px; color: #667085">{{s.px}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; padding: 16px; background: #F6F8FB; border-radius: 14px; font-size: 13px; line-height: 18px; color: #475467">
+        <span>Screen gutter · <b style="font-weight: 600">20</b></span>
+        <span>Card padding · <b style="font-weight: 600">20</b> (16 for small cards)</span>
+        <span>Between sections · <b style="font-weight: 600">28</b></span>
+        <span>Label → field · <b style="font-weight: 600">8</b> · field → field · <b style="font-weight: 600">24</b></span>
+        <span>List row min height · <b style="font-weight: 600">60</b> · touch target · <b style="font-weight: 600">44</b></span>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Radius</h2>
+        <span style="font-size: 14px; line-height: 20px; color: #667085">Larger surfaces, larger radius.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+        <sc-for list="{{radius}}" as="r" hint-placeholder-count="7">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="{{r.box}}"></span>
+            <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; line-height: 16px; color: #172033">{{r.token}} · {{r.px}}</span>
+            <span style="font-size: 12px; line-height: 16px; color: #667085">{{r.use}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Elevation</h2>
+        <span style="font-size: 14px; line-height: 20px; color: #667085">Shadow marks hierarchy, never decoration.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px; padding: 20px; background: #F6F8FB; border-radius: 16px">
+        <sc-for list="{{shadows}}" as="sh" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="{{sh.box}}"></span>
+            <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; line-height: 16px; color: #172033">{{sh.token}}</span>
+            <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; line-height: 16px; color: #667085">{{sh.value}}</span>
+            <span style="font-size: 12px; line-height: 16px; color: #475467">{{sh.use}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1100,"height":2300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var sw = function (hex) {
+      return 'width:44px;height:44px;border-radius:12px;flex-shrink:0;background:' + hex + ';box-shadow:inset 0 0 0 1px rgba(16,24,40,0.08)';
+    };
+    var mk = function (arr) { return arr.map(function (c) { return { token: c[0], hex: c[1], use: c[2], swatch: sw(c[1]) }; }); };
+    var colorGroups = [
+      { label: 'NEUTRALS', note: 'Surfaces and structure', items: mk([
+        ['bg/canvas', '#F6F8FB', 'app background'],
+        ['bg/surface', '#FFFFFF', 'cards, lists, nav'],
+        ['bg/subtle', '#F1F4F8', 'icon tiles, skipped'],
+        ['bg/track', '#EEF1F5', 'progress, segments'],
+        ['border/default', '#E7EBF0', 'card & input borders'],
+        ['border/strong', '#C9D0DB', 'upcoming nodes']
+      ]) },
+      { label: 'TEXT', note: 'Hierarchy through colour, not weight', items: mk([
+        ['text/primary', '#172033', 'titles, names'],
+        ['text/label', '#475467', 'field labels, icons'],
+        ['text/secondary', '#667085', 'times, meta'],
+        ['text/tertiary', '#98A2B3', 'icons & disabled only'],
+        ['text/on-primary', '#FFFFFF', 'on primary fills']
+      ]) },
+      { label: 'PRIMARY', note: 'Action and "now"', items: mk([
+        ['primary/default', '#3D6BE0', 'CTA, active node, tab'],
+        ['primary/pressed', '#2F5BCB', 'pressed, link ink'],
+        ['primary/soft', '#EDF3FF', 'now row, selection'],
+        ['primary/ring', '#DCE6FD', 'focus halo'],
+        ['primary/muted', '#8FA9EE', 'low-value bars']
+      ]) },
+      { label: 'STATUS', note: 'base · ink (text) · soft (fill)', items: mk([
+        ['success/base', '#34A36F', 'completed node'],
+        ['warning/base', '#DFA247', 'partial node'],
+        ['danger/base', '#D9646A', 'missed node'],
+        ['success/ink', '#1F7A52', 'completed label'],
+        ['warning/ink', '#A86A12', 'partial label'],
+        ['danger/ink', '#B9474D', 'missed, delete'],
+        ['success/soft', '#EAF6EF', 'chip fill'],
+        ['warning/soft', '#FCF3E3', 'chip fill'],
+        ['danger/soft', '#FBEDEE', 'chip fill']
+      ]) }
+    ];
+    var ts = function (s, lh, w, ls, extra) {
+      return 'flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#172033;font-size:' + s + 'px;line-height:' + lh + 'px;font-weight:' + w + ';letter-spacing:' + (ls || '0') + (extra || '');
+    };
+    var type = [
+      { token: 'stat', spec: '48/52 · 600 · -3%', use: 'Insights headline number', text: '82%', sample: ts(48, 52, 600, '-0.03em', ';font-variant-numeric:tabular-nums') },
+      { token: 'heading', spec: '28/34 · 600 · -2%', use: 'Screen heading', text: 'Today', sample: ts(28, 34, 600, '-0.02em') },
+      { token: 'title', spec: '22/28 · 600 · -1%', use: 'Current activity, prompts', text: 'Yoga', sample: ts(22, 28, 600, '-0.01em') },
+      { token: 'sheet-title', spec: '20/26 · 600', use: 'Bottom sheet title', text: 'How did Yoga go?', sample: ts(20, 26, 600) },
+      { token: 'nav-title', spec: '17/22 · 600', use: 'Modal top bar', text: 'New activity', sample: ts(17, 22, 600) },
+      { token: 'body', spec: '16/22 · 400–500', use: 'Activity names, inputs', text: 'Deep work', sample: ts(16, 22, 400) },
+      { token: 'body-sm', spec: '15/22 · 400', use: 'Descriptions, list text', text: 'Your next activity starts soon.', sample: ts(15, 22, 400) },
+      { token: 'secondary', spec: '14/20 · 400', use: 'Dates, time ranges', text: '6:00 AM – 7:00 AM', sample: ts(14, 20, 400, '0', ';color:#667085;font-variant-numeric:tabular-nums') },
+      { token: 'section', spec: '13/16 · 600 · +6% caps', use: 'Section labels', text: 'TODAY', sample: ts(13, 16, 600, '0.06em', ';color:#667085') },
+      { token: 'meta', spec: '13/18 · 400–500', use: 'Status lines, chips', text: 'Upcoming · 30 min', sample: ts(13, 18, 400, '0', ';color:#667085') },
+      { token: 'caption', spec: '12/14 · 500–600', use: 'Tab labels only', text: 'Insights', sample: ts(12, 14, 500, '0', ';color:#667085') }
+    ];
+    var motion = [
+      { token: 'duration/fast', value: '150ms', use: 'Press feedback, toggles, segment thumb' },
+      { token: 'duration/base', value: '200ms', use: 'Row tint Upcoming → Now, chip swap, number tween' },
+      { token: 'duration/check', value: '220ms', use: 'Check pop: scale .6 → 1.08 → 1' },
+      { token: 'duration/sheet', value: '240ms in · 180ms out', use: 'Bottom sheet slide + scrim fade' },
+      { token: 'ease/standard', value: '.2, .8, .2, 1', use: 'Enter and state change' },
+      { token: 'ease/exit', value: '.4, 0, 1, 1', use: 'Dismiss sheets and toasts' }
+    ];
+    var space = [4, 8, 12, 16, 20, 24, 28, 32].map(function (v, i) {
+      return { token: 'space-' + (i + 1), px: v + 'px', bar: 'height:12px;border-radius:3px;background:#DCE6FD;width:' + (v * 4) + 'px' };
+    });
+    var radius = [
+      ['radius/xs', 6, 'App icon, small tags'],
+      ['radius/sm', 9, 'Segment thumb'],
+      ['radius/md', 12, 'Buttons, inputs, tiles'],
+      ['radius/row', 14, 'Option rows, Now row'],
+      ['radius/lg', 16, 'List groups, small cards'],
+      ['radius/xl', 20, 'Now card'],
+      ['radius/sheet', 28, 'Sheet top corners'],
+      ['radius/pill', 999, 'Chips, switches, bars']
+    ].map(function (r) {
+      return { token: r[0], px: r[1] === 999 ? 'full' : r[1] + 'px', use: r[2], box: 'height:56px;background:#EDF3FF;border:1.5px solid #3D6BE0;box-sizing:border-box;border-radius:' + Math.min(r[1], 28) + 'px' + (r[0] === 'radius/sheet' ? ' ' + r[1] + 'px 0 0' : '') };
+    });
+    var shadows = [
+      ['shadow-0', 'none', 'Default. Lists and list groups use a 1px border instead.'],
+      ['shadow-1', '0 1px 2px rgba(16,24,40,.06)', 'Segment thumb, switch knob'],
+      ['shadow-2', '0 6px 24px rgba(16,24,40,.05)', 'The Now card only — one per screen'],
+      ['shadow-3', '0 -8px 32px rgba(16,24,40,.08)', 'Bottom sheets, over scrim rgba(23,32,51,.32)']
+    ].map(function (s) {
+      return { token: s[0], value: s[1], use: s[2], box: 'height:48px;border-radius:14px;background:#FFFFFF;border:1px solid #E7EBF0;box-shadow:' + s[1] };
+    });
+    return { colorGroups: colorGroups, type: type, motion: motion, space: space, radius: radius, shadows: shadows };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App background (tokens: bg), so launch doesn't flash white or black. -->
+    <color name="rhythm_bg">#F6F8FB</color>
+</resources>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Missed activity confirmation</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3D6BE0}a:hover{color:#2F5BCB}
+button{font-family:inherit}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes blink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
+@keyframes tilt{0%,100%{transform:rotate(0)}25%{transform:rotate(-7deg)}75%{transform:rotate(5deg)}}
+@keyframes droop{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(2px) rotate(-4deg)}}
+@keyframes tear{0%{transform:translateY(0);opacity:0}20%{opacity:1}80%{transform:translateY(9px);opacity:1}100%{transform:translateY(11px);opacity:0}}
+@keyframes talk{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.35)}}
+.b-bob{animation:bob 3s ease-in-out infinite}
+.b-tilt{animation:tilt 2.4s ease-in-out infinite;transform-origin:50% 90%}
+.b-droop{animation:droop 3.2s ease-in-out infinite;transform-origin:50% 90%}
+.b-eyes{animation:blink 4s infinite;transform-box:fill-box;transform-origin:center}
+.b-talk{animation:talk 180ms ease-in-out 1.2s 10 alternate;transform-box:fill-box;transform-origin:center}
+.b-tear{animation:tear 2.2s ease-in infinite}
+@media (prefers-reduced-motion:reduce){.b-bob,.b-tilt,.b-droop,.b-eyes,.b-talk,.b-tear{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F6F8FB; font-family: 'Geist', 'SF Pro Text', system-ui, sans-serif; color: #172033; -webkit-font-smoothing: antialiased">
+
+  <div aria-hidden="true" style="position: absolute; inset: 0; box-sizing: border-box; padding: 56px 20px 0; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <div style="font-size: 14px; line-height: 20px; color: #667085">Good morning</div>
+      <div style="font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: -0.02em">Today</div>
+      <div style="font-size: 14px; line-height: 20px; color: #667085">Sunday, 4 October</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 13px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: #667085">NOW</div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; align-items: center; gap: 14px">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: #EDF3FF"></div>
+          <div style="display: flex; flex-direction: column; gap: 2px">
+            <div style="font-size: 22px; line-height: 28px; font-weight: 600">Get ready</div>
+            <div style="font-size: 14px; line-height: 20px; color: #667085">7:00 AM – 7:30 AM</div>
+          </div>
+        </div>
+        <div style="height: 4px; border-radius: 999px; background: #EEF1F5"><div style="width: 13%; height: 100%; border-radius: 999px; background: #3D6BE0"></div></div>
+        <div style="display: flex; gap: 8px">
+          <div style="flex: 1; height: 48px; border-radius: 12px; background: #3D6BE0"></div>
+          <div style="width: 92px; height: 48px; border-radius: 12px; border: 1px solid #E7EBF0; box-sizing: border-box"></div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px; padding-left: 56px">
+      <div style="height: 14px; width: 120px; border-radius: 4px; background: #E7EBF0"></div>
+      <div style="height: 14px; width: 160px; border-radius: 4px; background: #E7EBF0"></div>
+      <div style="height: 14px; width: 100px; border-radius: 4px; background: #E7EBF0"></div>
+    </div>
+  </div>
+
+  <div style="position: absolute; inset: 0; background: rgba(23,32,51,0.32)"></div>
+
+  <div role="dialog" aria-labelledby="q" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 28px 28px 0 0; padding: 8px 20px 28px; box-shadow: 0 -8px 32px rgba(16,24,40,0.08); display: flex; flex-direction: column; gap: 24px">
+    <div style="width: 36px; height: 4px; border-radius: 999px; background: #D5DAE1; align-self: center"></div>
+
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding-top: 4px">
+      <span class="b-droop" style="display: block; width: 72px; height: 72px">
+        <svg width="72" height="72" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="25" fill="#FBEDEE" stroke="#D9646A" stroke-width="1.5"/><path d="M16.5 23 L23.5 20" fill="none" stroke="#172033" stroke-width="2" stroke-linecap="round"/><path d="M39.5 23 L32.5 20" fill="none" stroke="#172033" stroke-width="2" stroke-linecap="round"/><g class="b-eyes"><ellipse cx="21" cy="27" rx="2.6" ry="3" fill="#172033"/><ellipse cx="35" cy="27" rx="2.6" ry="3" fill="#172033"/></g><path class="b-talk" d="M21.5 38.5 Q28 33 34.5 38.5" fill="none" stroke="#172033" stroke-width="2.2" stroke-linecap="round"/><path class="b-tear" d="M37 30.5 Q39.2 33.9 37 35.5 Q34.8 33.9 37 30.5 Z" fill="#7FA3EE"/></svg>
+      </span>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h2 id="q" style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600; letter-spacing: -0.01em">Did you complete Yoga?</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 22px; color: #667085">The 6:00 – 7:00 AM window just ended.<br>A quick answer keeps your week accurate.</p>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <button type="button" style="height: 52px; border: 0; border-radius: 12px; background: #3D6BE0; color: #FFFFFF; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+        Yes, done
+      </button>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+        <button type="button" style="height: 52px; border: 1px solid #E7EBF0; border-radius: 12px; background: #FFFFFF; color: #172033; font-size: 15px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+          <svg width="16" height="16" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="#A86A12" stroke-width="2"/><path d="M10 4a6 6 0 0 0 0 12z" fill="#A86A12"/></svg>
+          Partially
+        </button>
+        <button type="button" style="height: 52px; border: 1px solid #E7EBF0; border-radius: 12px; background: #FFFFFF; color: #172033; font-size: 15px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.5" stroke-linecap="round"><path d="M6 12h12"/></svg>
+          No
+        </button>
+      </div>
+    </div>
+
+    <button type="button" style="height: 44px; border: 0; background: transparent; color: #667085; font-size: 14px; font-weight: 500; cursor: pointer; align-self: center; padding: 0 16px">Ask me later</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
